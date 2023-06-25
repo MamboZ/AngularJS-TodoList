@@ -1,4 +1,8 @@
-import { app } from "../app";
+import { app } from "../../src/app/app.main";
+
+let TodoListComponent = {
+    selector: 'todoList'
+}
 
 app.controller('TodoListController', function($scope, $routeParams, $location){
     // Base.js variable

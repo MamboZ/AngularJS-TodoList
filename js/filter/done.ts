@@ -1,4 +1,4 @@
-import { app } from "../app";
+import { app } from "../../src/app/app.main";
 
 app.filter('doneFilter', function () {
     return function (state: any, langOpen: any, langDone: any) { // langOpen and langDone are used for translation

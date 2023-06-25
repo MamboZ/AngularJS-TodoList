@@ -1,4 +1,4 @@
-import { app } from "../app";
+import { app } from "../../src/app/app.main";
 
 app.controller('BaseController', function($scope, lang, storageProvider){
     // Shortcuts

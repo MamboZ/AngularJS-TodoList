@@ -1,12 +1,12 @@
 <div class="settings">
 
-    <a class="settings-back -cursor-pointer" ng-click="location.path('/lists/1')" title="{{lang.backtitle}}">
+    <a class="settings-back -cursor-pointer" ng-click="$ctrl.location.path('/lists/1')" title="{{lang.backtitle}}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i> {{lang.back}}
     </a>
 
     <h3 class="settings-title">{{lang.settings}}</h3>
 
-    <form class="settings-form" ng-submit="saveSettings()">
+    <form class="settings-form" ng-submit="$ctrl.saveSettings()">
         <div class="form-group">
             <label for="settings-title">{{lang.title}}:</label>
             <input type="text" class="form-control" placeholder="{{lang.title}}..." name="settings-title" id="settings-title" ng-model="settings.title"
@@ -16,8 +16,8 @@
 
         <div class="form-group">
             <label for="settings-title">{{lang.language}}:</label>
-            <select class="form-control" name="settings-language" id="settings-language" ng-model="settings.language" ng-change="showReload = true">
-                                        <option ng-repeat="l in languages" value="{{l.short}}">{{l.full}}</option>
+            <select class="form-control" name="settings-language" id="settings-language" ng-model="settings.language" ng-change="$ctrl.showReload = true">
+                                        <option ng-repeat="l in $ctrl.languages" value="{{l.short}}">{{l.full}}</option>
                                     </select>
             <small id="language-help" class="form-text text-muted">{{lang.languagehelp}}.</small>
         </div>
@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="settings-timezone">{{lang.timezone}}:</label>
-            <div ng-include="'pages/timezones.html'"></div>
+            <div ng-include="'./timezones.html'"></div>
             <small id="timezone-help" class="form-text text-muted">{{lang.timezonehelp}}.</small>
         </div>
 

@@ -1,4 +1,4 @@
-import { app } from "../app";
+import { app } from "../../src/app/app.main";
 
 app.factory('storageProvider', function () {
     var storageProvider: any = {};
