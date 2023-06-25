@@ -1,5 +1,8 @@
+import { app } from "../app";
+
 app.factory('storageProvider', function () {
-    var storageProvider = {};
+    var storageProvider: any = {};
+    // var localStorage: any;
 
     // Default storage wich is set on the first page load
     storageProvider.defaultStorage = {
@@ -30,7 +33,7 @@ app.factory('storageProvider', function () {
     // The loaded storage
     storageProvider.storage = {};
 
-    if (localStorage.length === 0) { // If localstorage is emtpy (First page load)
+    if (localStorage?.length === 0) { // If localstorage is emtpy (First page load)
         storageProvider.defaultStorage.lists[0].todos[0].date = Date.now(); // Set date of default todo as now
 
         localStorage.setItem('storage', JSON.stringify(storageProvider.defaultStorage)); // Save storage to localstorage
@@ -39,13 +42,13 @@ app.factory('storageProvider', function () {
         
         console.log('Created new storage');
     } else { // If localstorage is not empty and the user has a saved storage
-        storageProvider.storage = JSON.parse(localStorage.getItem('storage')); // Load the saved storage
+        storageProvider.storage = JSON.parse(localStorage.getItem('storage') || '{}'); // Load the saved storage
     }
 
     console.log('Loaded storage');
 
     // Save function to save to the localstorage
-    storageProvider.save = function (newstorage) {
+    storageProvider.save = function (newstorage: any) {
         localStorage.setItem('storage', JSON.stringify(newstorage)); // Save storage to localstorage
 
         storageProvider.storage = newstorage; // Set the loaded storage to the new storage

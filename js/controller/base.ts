@@ -1,3 +1,5 @@
+import { app } from "../app";
+
 app.controller('BaseController', function($scope, lang, storageProvider){
     // Shortcuts
     $scope.settings = storageProvider.storage.settings;
@@ -7,12 +9,12 @@ app.controller('BaseController', function($scope, lang, storageProvider){
     $scope.lang = {};
     lang.load($scope.settings.language) // Returns the return of '$http.get()' object to use 'then()' in this controller
         .then(
-            function success(response) {
+            function success(response: any) {
                 $scope.lang = response.data;
                 console.log('Loaded language ' + $scope.settings.language);
             },
 
-            function error(response) {
+            function error(response: any) {
                 console.error('Cannot load language \'' + $scope.settings.language + '\'. Response:', response);
             }
         );

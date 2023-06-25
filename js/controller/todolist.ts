@@ -1,3 +1,5 @@
+import { app } from "../app";
+
 app.controller('TodoListController', function($scope, $routeParams, $location){
     // Base.js variable
     var base = $scope.$parent;
@@ -15,7 +17,7 @@ app.controller('TodoListController', function($scope, $routeParams, $location){
     $scope.addTodoForm.priority = '0';
 
     // Called when clicking the checkbox next to a todo.
-    $scope.checkTodo = function(listID, todoID){
+    $scope.checkTodo = function(listID: number, todoID: number){
         if (base.lists[listID].todos[todoID].done){ // Check if todo is done
             base.lists[listID].todos[todoID].done = false; // If it was already done, set it back to false ('open')
             console.log('Unchecked ' + listID + ',' + todoID );
@@ -52,9 +54,9 @@ app.controller('TodoListController', function($scope, $routeParams, $location){
     };
 
     // Called when the 'Remove ticked todos' button is clicked
-    $scope.removeTickedTodos = function (listID) {
+    $scope.removeTickedTodos = function (listID: number) {
         // Filter out checked todos
-        base.lists[listID].todos = base.lists[listID].todos.filter(function (val) {
+        base.lists[listID].todos = base.lists[listID].todos.filter(function (val: any) {
             if (val.done) {
                 console.log('Removed todo ' + listID + ',' + val.id);
                 return false;
@@ -72,7 +74,7 @@ app.controller('TodoListController', function($scope, $routeParams, $location){
 
     // Called when the 'New list' button is clicked
     $scope.newList = function(){
-        var newlist = {}; // Object for the newlist
+        var newlist: any = {}; // Object for the newlist
 
         var title = prompt(base.lang.newlistprompt + ': ', 'New list'); // Display Prompt with input. 'title' is input after submitting
         if (title != null){ // Check if title isn't empty
@@ -92,7 +94,7 @@ app.controller('TodoListController', function($scope, $routeParams, $location){
     };
 
     // Called when the 'Delete list' button is clicked
-    $scope.deleteList = function (listID) {
+    $scope.deleteList = function (listID: number) {
         var confirmed = confirm(base.lang.deleteconfirm); // Get confirmation if the user really wants to delete the current list. 'confirmed' is true if the user confirms
 
         // If the user pressed 'Cancel', abort

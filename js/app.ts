@@ -1,17 +1,8 @@
-
-/*
-
-TODO:
-
-- Rename CSS Classes (maybe)
-
-*/
+import * as angular from 'angular';
 
 // Create angular module
-var app = angular.module('TodoList', ['ngRoute']);
-
-// Routing-Configuration
-app.config(['$routeProvider', function ($routeProvider) {
+export var app = angular.module('TodoList', ['ngRoute']);
+app.config(['$routeProvider', function ($routeProvider: any) {
     $routeProvider
         .when('/', {
             redirectTo: '/list/0'

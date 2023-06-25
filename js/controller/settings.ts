@@ -1,3 +1,5 @@
+import { app } from "../app";
+
 app.controller('SettingsController', function ($scope,  $rootScope, $location) {
     // Base.js variable
     var base = $scope.$parent;

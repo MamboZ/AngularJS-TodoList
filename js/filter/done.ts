@@ -1,5 +1,7 @@
+import { app } from "../app";
+
 app.filter('doneFilter', function () {
-    return function (state, langOpen, langDone) { // langOpen and langDone are used for translation
+    return function (state: any, langOpen: any, langDone: any) { // langOpen and langDone are used for translation
         if (state === true) {
             return langOpen;
         } else {
