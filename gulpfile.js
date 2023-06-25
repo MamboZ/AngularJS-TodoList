@@ -26,16 +26,16 @@ var gulp            = require('gulp'),
 
 
 // optimize images
-gulp.task('images', function() {
-  return gulp.src('./images/**/*')
-    .pipe($.changed('./_build/images'))
-    .pipe($.imagemin({
-      optimizationLevel: 3,
-      progressive: true,
-      interlaced: true
-    }))
-    .pipe(gulp.dest('./_build/images'));
-});
+// gulp.task('images', function() {
+//   return gulp.src('./images/**/*')
+//     .pipe($.changed('./_build/images'))
+//     .pipe($.imagemin({
+//       optimizationLevel: 3,
+//       progressive: true,
+//       interlaced: true
+//     }))
+//     .pipe(gulp.dest('./_build/images'));
+// });
 
 // browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
@@ -262,7 +262,6 @@ gulp.task('default', ['browser-sync', 'minify-css'], function() {
 gulp.task('build', function(callback) {
   runSequence(
     'clean:build',
-    'images',
     'templates',
     'usemin',
     'fonts',
