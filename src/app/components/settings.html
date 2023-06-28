@@ -9,14 +9,14 @@
     <form class="settings-form" ng-submit="$ctrl.saveSettings()">
         <div class="form-group">
             <label for="settings-title">{{$ctrl.lang.title}}:</label>
-            <input type="text" class="form-control" placeholder="{{$ctrl.lang.title}}..." name="settings-title" id="settings-title" ng-model="settings.title"
+            <input type="text" class="form-control" placeholder="{{$ctrl.lang.title}}..." name="settings-title" id="settings-title" ng-model="$ctrl.settings.title"
                 required>
             <small id="title-help" class="form-text text-muted">{{$ctrl.lang.titlehelp}}.</small>
         </div>
 
         <div class="form-group">
             <label for="settings-title">{{$ctrl.lang.language}}:</label>
-            <select class="form-control" name="settings-language" id="settings-language" ng-model="settings.language" ng-change="$ctrl.showReload = true">
+            <select class="form-control" name="settings-language" id="settings-language" ng-model="$ctrl.settings.language" ng-change="$ctrl.showReload = true">
                                         <option ng-repeat="l in $ctrl.languages" value="{{l.short}}">{{l.full}}</option>
                                     </select>
             <small id="language-help" class="form-text text-muted">{{$ctrl.lang.languagehelp}}.</small>
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label for="settings-title">{{$ctrl.lang.dateformat}}:</label>
             <input type="text" class="form-control" placeholder="{{$ctrl.lang.dateformat}}..." name="settings-dateformat" id="settings-dateformat"
-                ng-model="settings.dateformat" required>
+                ng-model="$ctrl.settings.dateformat" required>
             <small id="dateformat-help" class="form-text text-muted">{{$ctrl.lang.dateformathelp}}. <a target="_blank" href="https://code.angularjs.org/1.6.4/docs/api/ng/filter/date">{{$ctrl.lang.help}}</a></small>
         </div>
 
@@ -36,7 +36,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{$ctrl.lang.save}}</button>
-        <label for="submit-btn" class="reload" ng-show="showReload">Please reload the page after saving!</label>
+        <label for="submit-btn" class="reload" ng-show="$ctrl.showReload">Please reload the page after saving!</label>
     </form>
 
 </div>

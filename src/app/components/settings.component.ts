@@ -10,14 +10,18 @@ let SettingsComponent = {
         public languages: any;
         public location: any;
         public lang: any = {};
+        public storage: any;
+        public settings: any;
 
         private $location: any;
         private StorageProvider: any;
         private lang_;
 
-        constructor($location: any, Lang: any) {
+        constructor($location: any, Lang: any, StorageProvider: any) {
             this.lang_ = Lang;
-            // this.StorageProvider = storageProvider;
+            this.StorageProvider = StorageProvider;
+            this.storage = StorageProvider.storage;
+            this.settings = StorageProvider.storage.settings;
             this.$location = $location;
             // this.location = this.$location;
             this.languages = [
@@ -41,7 +45,7 @@ let SettingsComponent = {
 
         saveSettings() {
             // this.StorageProvider.saveStorage(); // Save storage
-            // this.$location.path('/list/0'); // Redirect to the first list
+            this.$location.path('/list/0'); // Redirect to the first list
         };
 
     }

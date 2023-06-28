@@ -22,6 +22,7 @@ let TodoListComponent = {
         private StorageProvider;
         private Lang;
         private $routeParams;
+        private storage;
     
         constructor($location: any, $routeParams: any, StorageProvider: any, Lang: any) {
             this.Lang = Lang;
@@ -36,6 +37,7 @@ let TodoListComponent = {
             
             this.lists = StorageProvider.storage.lists;
             this.settings = StorageProvider.storage.settings;
+            this.storage = StorageProvider.storage;
             this.loadLanguages();
         }
 
@@ -57,7 +59,7 @@ let TodoListComponent = {
                 this.lists[listID].todos[todoID].done = true; // If it was open, set it to true ('done')
                 console.log('Checked ' + listID + ',' + todoID);
             }
-            this.StorageProvider.saveStorage(); // Save storage
+            this.StorageProvider.saveStorage(this.storage); // Save storage
         };
     
         // Called when the Add-Todo form gets submitted
@@ -79,7 +81,7 @@ let TodoListComponent = {
     
             this.lists[this.showTab].todos.push(this.addTodoForm); // Push the new todo to the todo-list of the current list 
     
-            this.StorageProvider.saveStorage(); // Save storage
+            this.StorageProvider.saveStorage(this.storage); // Save storage
     
             this.addTodoForm = {}; // Reset form
             this.addTodoForm.priority = '0'; // Set priority to the first option in the selection again
@@ -101,7 +103,7 @@ let TodoListComponent = {
                 this.lists[listID].todos[t].id = t;
             }
     
-            this.StorageProvider.saveStorage(); // Save storage
+            this.StorageProvider.saveStorage(this.storage); // Save storage
         };
     
         // Called when the 'New list' button is clicked
@@ -117,7 +119,7 @@ let TodoListComponent = {
     
                 this.lists.push(newlist); // Push the new list to the list of lists
     
-                this.StorageProvider.saveStorage(this.lists); // Save storage
+                this.StorageProvider.saveStorage(this.storage); // Save storage
     
                 console.log('Added new list: ' + newlist.title);
     
@@ -143,7 +145,7 @@ let TodoListComponent = {
                 this.lists[l].id = l;
             }
     
-            this.StorageProvider.saveStorage(); // Save storage
+            this.StorageProvider.saveStorage(this.storage); // Save storage
     
             this.location.path('/list/0'); // Redirect to the first list
         };

@@ -15,7 +15,6 @@ let BaseComponent = {
 
                 <div ng-view>
                     <h1>Loading...</h1>
-                    <todo-list></todo-list>
                 </div>
 
             </div>
@@ -26,7 +25,7 @@ let BaseComponent = {
     controller: class BaseController {
 
         public settings;
-        public lists;
+        // public lists;
         public lang;
 
         private lang_;
@@ -36,12 +35,13 @@ let BaseComponent = {
             this.lang_ = Lang;
             this.StorageProvider = StorageProvider;
             this.settings = StorageProvider.storage.settings;
-            this.lists = StorageProvider.storage.lists;
+            // this.lists = StorageProvider.storage.lists;
             this.loadLanguages()
         }
 
         async loadLanguages() {
-            await this.lang_.load(this.settings.language).then((res) =>{
+            // this.settings.language
+            await this.lang_.load('en').then((res) =>{
                 console.log('res:', res);
                 this.lang = res;
             }); 

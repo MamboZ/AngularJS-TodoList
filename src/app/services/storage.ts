@@ -32,7 +32,7 @@ export class StorageProvider {
     };
 
     // The loaded storage
-    private storage = {};
+    public storage = {};
     constructor(){
         if (localStorage.length === 0) { // If localstorage is emtpy (First page load)
             this.defaultStorage.lists[0].todos[0].date = Date.now(); // Set date of default todo as now
