@@ -1,4 +1,4 @@
-
+import angular from "angular";
 
 angular
     .module("TodoList")
@@ -8,8 +8,9 @@ angular
                 redirectTo: '/list/0'
             })
             .when('/list/:id', {
-                templateUrl: 'pages/todolist.html',
-                controller: 'TodoListController'
+                template: "<todo-list></todo-list>"
+                // templateUrl: 'pages/todolist.html',
+                // controller: 'TodoListController'
             })
             .when('/settings', {
                 template: "<settings></settings>"

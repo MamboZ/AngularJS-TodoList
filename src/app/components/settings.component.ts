@@ -6,26 +6,42 @@ let SettingsComponent = {
     templateUrl: 'src/app/components/settings.html',
     bindings: {},
     controller: class SettingsController {
-        public base: any;
         public showReload = false;
-        public languages: any[] = [];
+        public languages: any;
         public location: any;
+        public lang: any = {};
 
         private $location: any;
-        private storageProvider: any;
+        private StorageProvider: any;
+        private lang_;
 
-        constructor($location: any, storageProvider: any) {
-            this.location = $location;
+        constructor($location: any, Lang: any) {
+            this.lang_ = Lang;
+            // this.StorageProvider = storageProvider;
+            this.$location = $location;
+            // this.location = this.$location;
             this.languages = [
                 { short: 'en', full: 'English' },
                 { short: 'de', full: 'Deutsch' }
             ];
+            this.loadLanguages()
+        }
+
+        async loadLanguages() {
+            await this.lang_.load('en').then((res) =>{
+                console.log('res:', res);
+                this.lang = res;
+            }); 
+            console.log('lang:', this.lang);
+        }
+
+        back() {
+            this.$location.path('/list/0');
         }
 
         saveSettings() {
-            this.storageProvider.saveStorage(); // Save storage
-
-            this.$location.path('/list/0'); // Redirect to the first list
+            // this.StorageProvider.saveStorage(); // Save storage
+            // this.$location.path('/list/0'); // Redirect to the first list
         };
 
     }

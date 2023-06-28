@@ -33,7 +33,7 @@ app.factory('storageProvider', function () {
     // The loaded storage
     storageProvider.storage = {};
 
-    if (localStorage?.length === 0) { // If localstorage is emtpy (First page load)
+    if (localStorage.length === 0) { // If localstorage is emtpy (First page load)
         storageProvider.defaultStorage.lists[0].todos[0].date = Date.now(); // Set date of default todo as now
 
         localStorage.setItem('storage', JSON.stringify(storageProvider.defaultStorage)); // Save storage to localstorage
