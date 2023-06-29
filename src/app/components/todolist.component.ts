@@ -1,6 +1,6 @@
 // import angular from "angular";
-import "@angular/compiler";
-import 'zone.js';
+// import "@angular/compiler";
+// import 'zone.js';
 import { Component, Inject } from "@angular/core";
 import { Lang } from "../services/lang";
 import { StorageProvider } from "../services/storage"; 
@@ -9,7 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 @Component({
     selector: 'todoList',
-    templateUrl: '/src/app/components/todolist.component.html',
+    templateUrl: './todolist.component.html',
 })
 export class TodoListComponent {
     // Shortcut to use $location inside HTML

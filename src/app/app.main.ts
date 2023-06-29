@@ -1,7 +1,7 @@
-import * as angular from 'angular';
+// import * as angular from 'angular';
 
 // Create angular module
-export var app = angular.module('TodoList', ['ngRoute']);
+// export var app = angular.module('TodoList', ['ngRoute']);
 // app.config(['$routeProvider', function ($routeProvider: any) {
 //     $routeProvider
 //         .when('/', {
