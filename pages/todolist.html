@@ -5,13 +5,13 @@
         </button>
     </div>
 
-    <a class="new-list -cursor-pointer" ng-click="newList()" title="{{lang.newlisttitle}}">
+    <a class="new-list cursor-pointer" ng-click="newList()" title="{{lang.newlisttitle}}">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> {{lang.newlist}}
     </a>
 
     <div class="tabs">
         <ul class="nav nav-tabs">
-            <li class="nav-item -cursor-pointer" role="presentation" ng-repeat="tab in lists track by tab.id">
+            <li class="nav-item cursor-pointer" role="presentation" ng-repeat="tab in lists track by tab.id">
                 <a class="nav-link" ng-click="location.path('/list/' + tab.id)" ng-class="{ active:showTab == tab.id }" title="{{lang.switchtolist}} '{{tab.title}}'">
                    {{tab.title}}
                 </a>
@@ -22,7 +22,7 @@
     <div class="lists">
         <div class="list-content" ng-repeat="list in lists track by list.id" ng-show="showTab == list.id">
             <h3 class="todolist-title">{{list.title}}</h3>
-            <a class="delete-list -cursor-pointer" ng-click="deleteList(list.id)" title="{{lang.deletelisttitle}}">
+            <a class="delete-list cursor-pointer" ng-click="deleteList(list.id)" title="{{lang.deletelisttitle}}">
                 <i class="fa fa-trash-o" aria-hidden="true"></i> {{lang.deletelist}}
             </a>
 
@@ -40,7 +40,7 @@
 
                             <label class="form-check-label">
 
-                                <input type="checkbox" ng-checked="todo.done" ng-click="checkTodo(list.id, todo.id)" class="form-check-input todo-check -cursor-pointer" title="{{lang.setthistodoas}} {{todo.done | doneFilter: lang.open : lang.done}}" name="todo"></input>
+                                <input type="checkbox" ng-checked="todo.done" ng-click="checkTodo(list.id, todo.id)" class="form-check-input todo-check cursor-pointer" title="{{lang.setthistodoas}} {{todo.done | doneFilter: lang.open : lang.done}}" name="todo"></input>
                                 
                                 <dt ng-class="{ strike:todo.done }" class="todo-name priority-{{todo.priority}}">{{todo.name}}
                                     <small class="todo-date" ng-class="{ strike:todo.done }">, {{lang.added}}: {{todo.date | date: settings.dateformat : settings.timezone}}</small>
@@ -55,7 +55,7 @@
 
             </form>
 
-            <a class="remove-ticked -cursor-pointer" ng-click="removeTickedTodos(list.id)" title="{{lang.removetickedtitle}}">
+            <a class="remove-ticked cursor-pointer" ng-click="removeTickedTodos(list.id)" title="{{lang.removetickedtitle}}">
                 <i class="fa fa-minus-circle" aria-hidden="true"></i> {{lang.removeticked}}
             </a>
 

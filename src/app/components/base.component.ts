@@ -1,64 +1,46 @@
-import angular from "angular";
+// import angular from "angular";
 import "@angular/compiler";
 import 'zone.js';
+// import { downgradeComponent } from "@angular/upgrade/static";
+import { Component, Inject } from "@angular/core";
+import { StorageProvider } from "../services/storage";
+import { Lang } from "../services/lang";
+import { SettingsInterface } from "../Interfaces/storage.interfaces";
 
-let BaseComponent = {
-    selector: 'baseComp',
-    template: `
-    <div class="container-fluid content">
-        <div class="row">
-            <div class="col-md-8 col-centered">
+@Component({
+    selector: 'base-comp',
+    templateUrl: '/src/app/components/base.component.html'
+})
+export class BaseComponent {
+    public settings: SettingsInterface;
+    // public lists;
+    public lang;
 
-                <div class="title">
-                    <h1 class="check-load">{{$ctrl.settings.title}}</h1>
-                </div>
-
-                <div ng-view>
-                    <h1>Loading...</h1>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    `,
-    bindings: {},
-    controller: class BaseController {
-
-        public settings;
-        // public lists;
-        public lang;
-
-        private lang_;
-        private StorageProvider;
-
-        constructor(StorageProvider: any, Lang: any) {
-            this.lang_ = Lang;
-            this.StorageProvider = StorageProvider;
-            this.settings = StorageProvider.storage.settings;
-            // this.lists = StorageProvider.storage.lists;
-            this.loadLanguages()
-        }
-
-        async loadLanguages() {
-            // this.settings.language
-            await this.lang_.load('en').then((res) =>{
-                console.log('res:', res);
-                this.lang = res;
-            }); 
-            console.log('lang:', this.lang);
-        }
-
-        // Simplyfied save storage (for easier use in app)
-        saveStorage() {
-            this.StorageProvider.save(this.StorageProvider.storage);
-        };
-
+    constructor(@Inject(StorageProvider) private storageProvider: StorageProvider, @Inject(Lang) private lang_: Lang) {
+        this.settings = this.storageProvider.storage.settings;
+        // this.lists = StorageProvider.storage.lists;
+        this.loadLanguages()
     }
+
+    async loadLanguages() {
+        // this.settings.language
+        await this.lang_.load(this.settings.language).then((res) => {
+            this.lang_.lang = res;
+            this.lang = this.lang_.lang
+        });
+        console.log('base comp lang:', this.lang);
+    }
+
+    // Simplyfied save storage (for easier use in app)
+    // saveStorage() {
+    //     this.storageProvider.save(this.storageProvider.storage);
+    // };
 }
 
-angular
-    .module("TodoList")
-    .component(BaseComponent.selector, BaseComponent);
+// angular
+//     .module("TodoList")
+//     .directive("baseComp", downgradeComponent({ component: BaseComponent }));
+
 // app.controller('BaseController', function ($scope, Lang, StorageProvider) {
 //     // Shortcuts
 //     $scope.settings = StorageProvider.storage.settings;

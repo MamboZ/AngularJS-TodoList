@@ -1,10 +1,13 @@
+import angular from "angular";
 import { Injectable } from "@angular/core";
 import { downgradeInjectable } from "@angular/upgrade/static";
-import angular from "angular";
-// import { app } from "../app.main";
+import { StorageInterface } from "../Interfaces/storage.interfaces";
 
 @Injectable()
 export class StorageProvider {
+
+    // The loaded storage
+    public storage: StorageInterface;
 
     private defaultStorage = {
         settings: {
@@ -30,9 +33,6 @@ export class StorageProvider {
             }
         ]
     };
-
-    // The loaded storage
-    public storage = {};
     constructor(){
         if (localStorage.length === 0) { // If localstorage is emtpy (First page load)
             this.defaultStorage.lists[0].todos[0].date = Date.now(); // Set date of default todo as now

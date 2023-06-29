@@ -6,7 +6,7 @@ import angular from "angular";
 
 @Injectable()
 export class Lang {
-  // @Inject(HttpClient)
+  public lang = {};
   constructor(@Inject(HttpClient) private http: HttpClient) { }
   load = (lang: string): Promise<any> => {
     if (lang == null) lang = 'en';

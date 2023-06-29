@@ -1,4 +1,6 @@
 import angular from "angular";
+import "@angular/compiler";
+import 'zone.js';
 
 angular
     .module("TodoList")
