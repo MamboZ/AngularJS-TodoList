@@ -1,6 +1,6 @@
 // import angular from "angular";
-import "@angular/compiler";
-import 'zone.js';
+// import "@angular/compiler";
+// import 'zone.js';
 // import { downgradeComponent } from "@angular/upgrade/static";
 import { Component, Inject } from "@angular/core";
 import { StorageProvider } from "../services/storage";
@@ -9,7 +9,7 @@ import { SettingsInterface } from "../Interfaces/storage.interfaces";
 
 @Component({
     selector: 'base-comp',
-    templateUrl: '/src/app/components/base.component.html'
+    templateUrl: './base.component.html'
 })
 export class BaseComponent {
     public settings: SettingsInterface;

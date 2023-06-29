@@ -1,21 +1,21 @@
-import 'angular';
-import "@angular/compiler";
-import 'zone.js';
+// import 'angular';
+// import "@angular/compiler";
+// import 'zone.js';
 
-import 'angular-resource';
+// import 'angular-resource';
 // import 'angular-animate';
 // import 'angular-ladda';
 // import 'angular-strap';
 // import 'angular-ui-router';
-import 'angular-route';
+// import 'angular-route';
 
-import './app.main';
+// import './app/app.main';
 // import './app.routes';
-import './components';
+// import './app/components';
 // import './filter';
-import './services';
+// import './app/services';
 
-import './polyfills';
+import './app/polyfills';
 
 import { DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,14 +23,14 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app.routes';
+import { AppRoutingModule } from './app/app.routes';
 
-import { StorageProvider } from './services/storage';
-import { Lang } from './services/lang';
-import { BaseComponent } from './components/base.component';
-import { TodoListComponent } from './components/todolist.component';
-import { SettingsComponent } from './components/settings.component';
-import { DoneFilterPipe } from './filter/done-filter.pipe';
+import { StorageProvider } from './app/services/storage';
+import { Lang } from './app/services/lang';
+import { BaseComponent } from './app/components/base.component';
+import { TodoListComponent } from './app/components/todolist.component';
+import { SettingsComponent } from './app/components/settings.component';
+import { DoneFilterPipe } from './app/filter/done-filter.pipe';
 import { RouterModule } from '@angular/router';
 
 
@@ -69,7 +69,8 @@ export class AppModule {
 }
 
 // Bootstrap using the UpgradeModule
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));
 // .then(platformRef => {
 //     console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
 //     const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;

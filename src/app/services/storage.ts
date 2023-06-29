@@ -1,6 +1,6 @@
-import angular from "angular";
+// import angular from "angular";
+// import { downgradeInjectable } from "@angular/upgrade/static";
 import { Injectable } from "@angular/core";
-import { downgradeInjectable } from "@angular/upgrade/static";
 import { StorageInterface } from "../Interfaces/storage.interfaces";
 
 @Injectable()
@@ -62,9 +62,9 @@ export class StorageProvider {
 
 }
 
-angular
-    .module("TodoList")
-    .factory("StorageProvider", downgradeInjectable(StorageProvider));
+// angular
+//     .module("TodoList")
+//     .factory("StorageProvider", downgradeInjectable(StorageProvider));
 // app.factory('storageProvider', function () {
 //     var storageProvider: any = {};
 //     // var localStorage: any;
