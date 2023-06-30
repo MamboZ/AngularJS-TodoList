@@ -12,18 +12,14 @@ import { ListInterface, SettingsInterface } from "src/app/Interfaces/storage.int
 export class TodoListComponent {
  
     // Set current showing tab to the id passed by url
-    showTab: number = 0;
-
+    public showTab: number = 0;
     // Add-Todo form model
-    addTodoForm: any = {};
-
+    public addTodoForm: any = {};
     public lists: ListInterface[] = [];
     public settings: SettingsInterface;
     public $lang = this.Lang.$lang;
     public title: string;
-
-
-    private $routeParams;
+    public todoFormPriority: any[];
     private storage;
 
     constructor(
@@ -34,10 +30,10 @@ export class TodoListComponent {
     ) {
         // Set priority to '0' so the first option in the selection ('Select Priority...') is selected by default
         this.addTodoForm.priority = '0';
-
         this.lists = this.storageProvider.storage.lists;
         this.settings = this.storageProvider.storage.settings;
         this.storage = this.storageProvider.storage;
+        this.todoFormPriority = ['2','1','0','-1'];
     }
 
     ngOnInit(): void {

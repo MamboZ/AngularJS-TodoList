@@ -18,7 +18,7 @@ import { SettingsComponent } from './app/components/settings.component';
 import { DoneFilterPipe } from './app/filter/done-filter.pipe';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DxCheckBoxModule, DxFormModule, DxTabPanelModule, DxTemplateModule } from 'devextreme-angular';
+import { DxCheckBoxModule, DxFormModule, DxSelectBoxModule, DxTabPanelModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 
 @NgModule({
     imports: [
@@ -34,6 +34,9 @@ import { DxCheckBoxModule, DxFormModule, DxTabPanelModule, DxTemplateModule } fr
         DxFormModule,
         DxCheckBoxModule,
         DxTemplateModule,
+        DxTextBoxModule,
+        DxTextAreaModule, 
+        DxSelectBoxModule,
     ],
     providers: [
         Lang,

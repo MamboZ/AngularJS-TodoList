@@ -67,35 +67,38 @@
                 </a>
             </div>
         </div>
-    </dx-tab-panel>
-    <br>
+    </dx-tab-panel> 
     <div class="add-todo">
         <form class="add-form" (ngSubmit)="addTodo()">
             <h5>{{lang.addnewtodoto}} {{title}}:</h5>
-
             <div class="form-group">
-                <label for="todo-name">{{lang.name}}:</label>
-                <input type="text" class="form-control" placeholder="{{lang.name}}..." name="todo-name" id="todo-name"
-                    [(ngModel)]="addTodoForm.name" required>
-                <small id="name-help" class="form-text text-muted">{{lang.namehelp}}.</small>
+                <div class="field">
+                    <div class="label">{{lang.name}}</div>
+                    <div class="value">
+                        <dx-text-box [(ngModel)]="addTodoForm.name" required [inputAttr]="{ 'aria-label': 'Title' }"
+                            valueChangeEvent="keyup" [maxLength]="40" placeholder="{{lang.name}}..." name="todo-name"
+                            id="todo-name"></dx-text-box>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="todo-notice">{{lang.notice}}:</label>
-                <textarea class="form-control" placeholder="{{lang.notice}}..." rows="3" name="todo-notice"
-                    id="todo-notice" [(ngModel)]="addTodoForm.notice"></textarea>
-                <small id="notice-help" class="form-text text-muted">{{lang.noticehelp}}.</small>
+                <div class="field">
+                    <div class="label">{{lang.notice}}</div>
+                    <dx-text-area [height]="70" [maxLength]="250" [(ngModel)]="addTodoForm.notice"
+                        [autoResizeEnabled]="false" [inputAttr]="{ 'aria-label': 'Notes' }"
+                        placeholder="{{lang.notice}}..." name="todo-notice" id="todo-notice">
+                    </dx-text-area>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="todo-priority">{{lang.priority}}:</label>
-                <select class="form-control" name="todo-priority" id="todo-priority" [(ngModel)]="addTodoForm.priority">
-                    <option value="0">{{lang.priorityselect}}...</option>
-                    <option>2</option>
-                    <option>1</option>
-                    <option>0</option>
-                    <option>-1</option>
-                </select>
+                <div class="field">
+                    <div class="label">{{lang.priority}}</div>
+                    <dx-select-box [items]="todoFormPriority" [inputAttr]="{ 'aria-label': 'priority' }"
+                        [placeholder]="lang.priorityselect" [(value)]="addTodoForm.priority">
+                    </dx-select-box>                    
+                </div>
                 <small id="priority-help" class="form-text text-muted">{{lang.priorityhelp}}.</small>
             </div>
 
