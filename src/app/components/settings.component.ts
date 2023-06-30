@@ -6,7 +6,13 @@ import { Router } from "@angular/router";
 import { SettingsInterface, StorageInterface } from "../Interfaces/storage.interfaces";
 import { HttpClient } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Subscription, take } from "rxjs";
 
+
+export interface Language {
+    short: string,
+    full: string
+}
 
 @Component({
     selector: "settings",
@@ -15,31 +21,38 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class SettingsComponent {
     public externalHtml;
     public showReload = false;
-    public languages: any;
+    public languages: Language[];
     public lang: any = {};
     public storage: StorageInterface;
     public settings: SettingsInterface;
+
+    private $externalHtmlSubscription: Subscription;
 
     constructor(
         @Inject(Lang) private lang_: Lang,
         @Inject(StorageProvider) private storageProvider: StorageProvider,
         @Inject(Router) private router: Router,
         @Inject(HttpClient) private http: HttpClient,
-        private sanitizer: DomSanitizer) {
-            // console.log("settings lkang:", this.lang_.lang);
-            // this.lang = this.lang_.lang;
-            this.storage = this.storageProvider.storage;
-            this.settings = this.storageProvider.storage.settings;
-            this.languages = [
-                { short: 'en', full: 'English' },
-                { short: 'de', full: 'Deutsch' }
-            ];
+        private sanitizer: DomSanitizer
+    ) {
+        this.storage = this.storageProvider.storage;
+        this.settings = this.storageProvider.storage.settings;
+        this.languages = [
+            { short: 'en', full: 'English' },
+            { short: 'de', full: 'Deutsch' }
+        ];
 
-            this.http.get('assets/timezones.html', { responseType: 'text' }).subscribe(
+        this.$externalHtmlSubscription = this.http.get('assets/timezones.html', { responseType: 'text' })
+            .pipe(take(1))
+            .subscribe(
                 data => {
                     return this.externalHtml = this.sanitizer.bypassSecurityTrustHtml(data)
                 }
             );
+    }
+
+    ngOnDestroy() {
+
     }
 
     identify(index, item) {
