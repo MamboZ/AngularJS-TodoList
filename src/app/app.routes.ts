@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { SettingsComponent } from "./components/settings.component";
-import { TodoListComponent } from "./components/todolist.component";
+import { TodoListComponent } from "./components/todolist/todolist.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'list/0', pathMatch: 'full'},

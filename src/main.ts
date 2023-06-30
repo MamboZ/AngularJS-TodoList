@@ -1,22 +1,5 @@
 /// <reference types="@angular/localize" />
 
-// import 'angular';
-// import "@angular/compiler";
-// import 'zone.js';
-
-// import 'angular-resource';
-// import 'angular-animate';
-// import 'angular-ladda';
-// import 'angular-strap';
-// import 'angular-ui-router';
-// import 'angular-route';
-
-// import './app/app.main';
-// import './app.routes';
-// import './app/components';
-// import './filter';
-// import './app/services';
-
 import './app/polyfills';
 
 import { DoBootstrap, NgModule } from '@angular/core';
@@ -30,12 +13,12 @@ import { AppRoutingModule } from './app/app.routes';
 import { StorageProvider } from './app/services/storage';
 import { Lang } from './app/services/lang';
 import { BaseComponent } from './app/components/base.component';
-import { TodoListComponent } from './app/components/todolist.component';
+import { TodoListComponent } from './app/components/todolist/todolist.component';
 import { SettingsComponent } from './app/components/settings.component';
 import { DoneFilterPipe } from './app/filter/done-filter.pipe';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { DxCheckBoxModule, DxFormModule, DxTabPanelModule, DxTemplateModule } from 'devextreme-angular';
 
 @NgModule({
     imports: [
@@ -46,7 +29,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        DxTabPanelModule,
+        DxFormModule,
+        DxCheckBoxModule,
+        DxTemplateModule,
     ],
     providers: [
         Lang,
