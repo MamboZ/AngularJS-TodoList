@@ -59,9 +59,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         DoneFilterPipe,
     ],
     exports: [
-        BaseComponent,
-        SettingsComponent,
-        TodoListComponent,
     ],
     bootstrap: [
         BaseComponent

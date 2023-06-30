@@ -12,16 +12,17 @@
     <div class="tabs">
         <ul class="nav nav-tabs">
             <li class="nav-item cursor-pointer" role="presentation" *ngFor="let tab of lists; trackBy: identify">
-                <a class="nav-link" routerLink="'/list/tab.id'" *ngClass="{ active:showTab == tab.id }"
+                <a class="nav-link" (click)="setShowToTab(tab.id)" [routerLink]="'/list/'+tab.id" [ngClass]="{ 'active':showTab == tab.id }"
                     title="{{lang.switchtolist}} '{{tab.title}}'">
                     {{tab.title}}
                 </a>
             </li>
         </ul>
     </div>
+    {{showTab}}
 
     <div class="lists">
-        <div class="list-content" *ngFor="let list of lists; trackBy: identify" [hidden]="showTab == list.id">
+        <div class="list-content" *ngFor="let list of lists; trackBy: identify" [hidden]="showTab != list.id">
             <h3 class="todolist-title">{{list.title}}</h3>
             <a class="delete-list cursor-pointer" (click)="deleteList(list.id)" title="{{lang.deletelisttitle}}">
                 <i class="fa fa-trash-o" aria-hidden="true"></i> {{lang.deletelist}}
@@ -41,17 +42,17 @@
 
                             <label class="form-check-label">
 
-                                <input type="checkbox" [checked]="todo.done" (click)="checkTodo(list.id, todo.id)"
+                                <input type="checkbox" [(checked)]="todo.done" (click)="checkTodo(list.id, todo.id)"
                                     class="form-check-input todo-check cursor-pointer"
                                     title="{{lang.setthistodoas}} {{todo.done | doneFilter: lang.open : lang.done}}"
                                     name="todo">
 
-                                <dt *ngClass="{ strike:todo.done }" class="todo-name priority-{{todo.priority}}">
+                                <dt [ngClass]="{ 'strike':todo.done }" class="todo-name priority-{{todo.priority}}">
                                     {{todo.name}}
                                     <small class="todo-date" ng-class="{ strike:todo.done }">, {{lang.added}}:
                                         {{todo.date | date: settings.dateformat : settings.timezone}}</small>
                                 </dt>
-                                <dd *ngClass="{ strike:todo.done }" [hidden]="todo.notice == ''" class="todo-notice">
+                                <dd [ngClass]="{ 'strike':todo.done }" [hidden]="todo.notice == ''" class="todo-notice">
                                     {{todo.notice}}</dd>
 
                             </label>
