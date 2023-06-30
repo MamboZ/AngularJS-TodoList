@@ -13,7 +13,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 })
 export class TodoListComponent {
     // Shortcut to use $location inside HTML
-    location;
+    // location;
 
     // Set current showing tab to the id passed by url
     showTab;
@@ -138,7 +138,8 @@ export class TodoListComponent {
 
             console.log('Added new list: ' + newlist.title);
 
-            this.location.path('/list/' + newlist.id); // Show the new list
+            this.router.navigate(['/list/' + newlist.id]); // Show the new list
+            this.setShowToTab(newlist.id);
         }
     };
 
@@ -164,7 +165,8 @@ export class TodoListComponent {
 
         this.storageProvider.saveStorage(this.storage); // Save storage
 
-        this.location.path('/list/0'); // Redirect to the first list
+        this.router.navigate(['/list/0']); // Redirect to the first list
+        this.setShowToTab('0');
     };
 
 }

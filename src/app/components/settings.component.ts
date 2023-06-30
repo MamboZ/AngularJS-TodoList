@@ -22,14 +22,14 @@ export class SettingsComponent {
     public externalHtml;
     public showReload = false;
     public languages: Language[];
-    public lang: any = {};
+    public $lang = this.lang.$lang;
     public storage: StorageInterface;
     public settings: SettingsInterface;
 
     private $externalHtmlSubscription: Subscription;
 
     constructor(
-        @Inject(Lang) private lang_: Lang,
+        @Inject(Lang) private lang: Lang,
         @Inject(StorageProvider) private storageProvider: StorageProvider,
         @Inject(Router) private router: Router,
         @Inject(HttpClient) private http: HttpClient,
@@ -64,7 +64,7 @@ export class SettingsComponent {
     }
 
     saveSettings() {
-        // this.StorageProvider.saveStorage(); // Save storage
+        this.storageProvider.saveStorage(this.storage); // Save storage
         this.router.navigate(['/list/0']); // Redirect to the first list
     };
 

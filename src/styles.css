@@ -4,6 +4,10 @@ body {
     color: white !important;
 }
 
+.form-text{
+    color: rgb(97 136 175 / 75%)!important;
+}
+
 .bg-inverse {
     background-color: #292b2c!important;
 }

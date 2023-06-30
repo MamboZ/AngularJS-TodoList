@@ -5,9 +5,9 @@
     "description": "Simple AngularJS",
     "main": "index.js",
     "scripts": {
-        "start": "npm run build & serve",
+        "start": "ng serve",
         "setup": "bower install",
-        "build": "rimraf src/dist && webpack --bail --progress --profile --mode development"
+        "build": "ng build"
     },
     "dependencies": {
         "@angular/animations": "^16.1.2",
