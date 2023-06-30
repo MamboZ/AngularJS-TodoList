@@ -4,91 +4,23 @@ import { Lang } from "src/app/services/lang";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { ListInterface, SettingsInterface } from "src/app/Interfaces/storage.interfaces";
 
-export class Company {
-    ID: number;
-  
-    CompanyName: string;
-  
-    Address: string;
-  
-    City: string;
-  
-    State: string;
-  
-    Zipcode: number;
-  
-    Phone: string;
-  
-    Fax: string;
-  
-    Website: string;
-  }
-
- export const companies: Company[] = [{
-    ID: 1,
-    CompanyName: 'SuprMart',
-    Address: '702 SW 8th Street',
-    City: 'Bentonville',
-    State: 'Arkansas',
-    Zipcode: 72716,
-    Phone: '(800) 555-2797',
-    Fax: '(800) 555-2171',
-    Website: 'http://www.nowebsitesupermart.com',
-  }, {
-    ID: 2,
-    CompanyName: "El'Depot",
-    Address: '2455 Paces Ferry Road NW',
-    City: 'Atlanta',
-    State: 'Georgia',
-    Zipcode: 30339,
-    Phone: '(800) 595-3232',
-    Fax: '(800) 595-3231',
-    Website: 'http://www.nowebsitedepot.com',
-  }, {
-    ID: 3,
-    CompanyName: 'K&S Music',
-    Address: '1000 Nicllet Mall',
-    City: 'Minneapolis',
-    State: 'Minnesota',
-    Zipcode: 55403,
-    Phone: '(612) 304-6073',
-    Fax: '(612) 304-6074',
-    Website: 'http://www.nowebsitemusic.com',
-  }, {
-    ID: 4,
-    CompanyName: 'Tom Club',
-    Address: '999 Lake Drive',
-    City: 'Issaquah',
-    State: 'Washington',
-    Zipcode: 98027,
-    Phone: '(800) 955-2292',
-    Fax: '(800) 955-2293',
-    Website: 'http://www.nowebsitetomsclub.com',
-  }];
-
 @Component({
     selector: 'todoList',
     templateUrl: 'todolist.component.html',
     styleUrls: ['todolist.component.css']
 })
 export class TodoListComponent {
-
-
-    companies: Company[] = companies;
-
-    itemCount: number = this.companies.length;
- 
-    selectedTabIndex = 0;
  
     // Set current showing tab to the id passed by url
-    showTab: number;
+    showTab: number = 0;
 
     // Add-Todo form model
     addTodoForm: any = {};
 
-    lists: ListInterface[];
-    settings: SettingsInterface;
+    public lists: ListInterface[] = [];
+    public settings: SettingsInterface;
     public $lang = this.Lang.$lang;
+    public title: string;
 
 
     private $routeParams;
@@ -108,9 +40,14 @@ export class TodoListComponent {
         this.storage = this.storageProvider.storage;
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         // Set current showing tab to the id passed by 
         this.setShowToTab(Number(this.route.snapshot.paramMap.get('id')));
+    }
+
+    onTitleClick(event): void {
+        this.title = event.itemData.title;
+        this.setShowToTab(event.itemData.id)
     }
 
     trackBy(index, item) {
@@ -184,13 +121,14 @@ export class TodoListComponent {
 
     // Called when the 'New list' button is clicked
     newList() {
-        var newlist: ListInterface; // Object for the newlist
+        let newlist: any = {}; // Object for the newlist
 
-        var title = prompt('Title of the new list:: ', 'New list');
         // TODO: get data from Observable 
         // prompt(this.lang.newlistprompt + ': ', 'New list'); // Display Prompt with input. 'title' is input after submitting
-        if (title != null){ // Check if title isn't empty
+        var title = prompt('Title of the new list: ', 'New list');
+        if (title != null || title != ''){ // Check if title isn't empty
             // Default values
+            console.log('newlist.id ',this.lists.length )
             newlist.id = this.lists.length;
             newlist.title = title;
             newlist.todos = [];

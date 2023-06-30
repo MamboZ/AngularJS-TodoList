@@ -1,16 +1,16 @@
-dx-tab-panel{
+/* dx-tab-panel{
     height: auto !important;
-}
+} */
 ::ng-deep .tabpanel-item {
-    height: 200px;
+    height: 220px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding-left: 25px;
-    padding-top: 55px;
+    padding: 25px 25px;
+    overflow-y: auto;
 }
 
 ::ng-deep .mobile .tabpanel-item {
