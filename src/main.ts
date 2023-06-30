@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 // import 'angular';
 // import "@angular/compiler";
 // import 'zone.js';
@@ -32,10 +34,12 @@ import { TodoListComponent } from './app/components/todolist.component';
 import { SettingsComponent } from './app/components/settings.component';
 import { DoneFilterPipe } from './app/filter/done-filter.pipe';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
     imports: [
+        NgbModule,
         AppRoutingModule,
         BrowserModule,
         UpgradeModule,

@@ -1,7 +1,7 @@
 
 import { Component, Inject } from "@angular/core";
 import { Lang } from "../services/lang";
-import { StorageProvider } from "../services/storage"; 
+import { StorageProvider } from "../services/storage";
 import { Router } from "@angular/router";
 import { SettingsInterface, StorageInterface } from "../Interfaces/storage.interfaces";
 import { HttpClient } from "@angular/common/http";
@@ -26,21 +26,23 @@ export class SettingsComponent {
         @Inject(Router) private router: Router,
         @Inject(HttpClient) private http: HttpClient,
         private sanitizer: DomSanitizer) {
-        this.lang = this.lang_.lang;
-        this.storage = this.storageProvider.storage;
-        this.settings = this.storageProvider.storage.settings;
-        this.languages = [
-            { short: 'en', full: 'English' },
-            { short: 'de', full: 'Deutsch' }
-        ];
+            // console.log("settings lkang:", this.lang_.lang);
+            // this.lang = this.lang_.lang;
+            this.storage = this.storageProvider.storage;
+            this.settings = this.storageProvider.storage.settings;
+            this.languages = [
+                { short: 'en', full: 'English' },
+                { short: 'de', full: 'Deutsch' }
+            ];
 
-        this.http.get('assets/timezones.html', { responseType: 'text' }).subscribe(
-            data => {
-                return this.externalHtml = this.sanitizer.bypassSecurityTrustHtml(data)}
-          );
+            this.http.get('assets/timezones.html', { responseType: 'text' }).subscribe(
+                data => {
+                    return this.externalHtml = this.sanitizer.bypassSecurityTrustHtml(data)
+                }
+            );
     }
 
-    identify(index, item){
+    identify(index, item) {
         return item.id
     }
 

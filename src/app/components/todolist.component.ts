@@ -23,17 +23,17 @@ export class TodoListComponent {
 
     lists;
     settings: any;
-    lang: any = {};
+    public $lang = this.Lang.$lang;
 
 
     private $routeParams;
     private storage;
 
     constructor(
-        @Inject(Lang) private Lang: Lang,
-        @Inject(StorageProvider) private storageProvider: StorageProvider,
-        @Inject(ActivatedRoute) private route: ActivatedRoute,
-        @Inject(Router) private router: Router
+        private Lang: Lang,
+        private storageProvider: StorageProvider,
+        private route: ActivatedRoute,
+        private router: Router
         ){
         // Set priority to '0' so the first option in the selection ('Select Priority...') is selected by default
         this.addTodoForm.priority = '0';
@@ -41,19 +41,11 @@ export class TodoListComponent {
         this.lists = this.storageProvider.storage.lists;
         this.settings = this.storageProvider.storage.settings;
         this.storage = this.storageProvider.storage;
-        this.loadLanguages();
     }
 
     ngOnInit() {
         // Set current showing tab to the id passed by url
         this.showTab = this.route.snapshot.paramMap.get('id')!;
-        // [routerLink]="['/hero', hero.id]"
-        // this.router.navigate(['/heroes']);
-        // const id = 
-        // this.hero$ = this.route.paramMap.pipe(
-        //   switchMap((params: ParamMap) =>
-        //     this.service.getHero(params.get('id')!))
-        // );
       }
 
     trackBy(index, item){
@@ -62,14 +54,6 @@ export class TodoListComponent {
 
     identify(index, item){
         return item.id
-    }
-
-    async loadLanguages() {
-        await this.Lang.load(this.settings.language).then((res) =>{
-            console.log('res:', res);
-            this.lang = res;
-        }); 
-        console.log('lang:', this.lang);
     }
     
 
@@ -133,7 +117,9 @@ export class TodoListComponent {
     newList(){
         var newlist: any = {}; // Object for the newlist
 
-        var title = prompt(this.lang.newlistprompt + ': ', 'New list'); // Display Prompt with input. 'title' is input after submitting
+        var title = prompt('Title of the new list:: ', 'New list');
+        // TODO: get data from Observable 
+        // prompt(this.lang.newlistprompt + ': ', 'New list'); // Display Prompt with input. 'title' is input after submitting
         if (title != null){ // Check if title isn't empty
             // Default values
             newlist.id = this.lists.length;
@@ -152,7 +138,9 @@ export class TodoListComponent {
 
     // Called when the 'Delete list' button is clicked
     deleteList(listID: number) {
-        var confirmed = confirm(this.lang.deleteconfirm); // Get confirmation if the user really wants to delete the current list. 'confirmed' is true if the user confirms
+        //TODO translation for confirm
+        // confirm(this.lang.deleteconfirm)
+        var confirmed = confirm('This cannot be undone!'); // Get confirmation if the user really wants to delete the current list. 'confirmed' is true if the user confirms
 
         // If the user pressed 'Cancel', abort
         if (confirmed === false){

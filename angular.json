@@ -26,12 +26,10 @@
                 "src/assets/languages"
               ],
               "styles": [
-                "src/assets/vendors/bootstrap/bootstrap.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "src/styles.css"
               ],
               "scripts": [
-                "src/assets/vendors/bootstrap/bootstrap.js",
-                "src/assets/vendors/jquery/jquery.min.js"
               ]
             },
             "configurations": {
@@ -93,12 +91,10 @@
                 "src/assets/languages"
               ],
               "styles": [
-                "src/assets/vendors/bootstrap/bootstrap.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "src/styles.css"
               ],
               "scripts": [
-                "src/assets/vendors/bootstrap/bootstrap.js",
-                "src/assets/vendors/jquery/jquery.min.js"
               ]
             }
           }

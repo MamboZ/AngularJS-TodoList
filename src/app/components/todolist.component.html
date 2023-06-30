@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="$lang |async as lang">
     <div class="settings-btn">
         <button class="btn btn-primary" [routerLink]="'/settings'">
             <i class="fa fa-cog" aria-hidden="true"></i> {{lang.settings}}
@@ -41,7 +41,7 @@
 
                             <label class="form-check-label">
 
-                                <input type="checkbox" ng-checked="todo.done" (click)="checkTodo(list.id, todo.id)"
+                                <input type="checkbox" [checked]="todo.done" (click)="checkTodo(list.id, todo.id)"
                                     class="form-check-input todo-check cursor-pointer"
                                     title="{{lang.setthistodoas}} {{todo.done | doneFilter: lang.open : lang.done}}"
                                     name="todo">
@@ -74,21 +74,21 @@
                     <div class="form-group">
                         <label for="todo-name">{{lang.name}}:</label>
                         <input type="text" class="form-control" placeholder="{{lang.name}}..." name="todo-name"
-                            id="todo-name" [ngModel]="addTodoForm.name" required>
+                            id="todo-name" [(ngModel)]="addTodoForm.name" required>
                         <small id="name-help" class="form-text text-muted">{{lang.namehelp}}.</small>
                     </div>
 
                     <div class="form-group">
                         <label for="todo-notice">{{lang.notice}}:</label>
                         <textarea class="form-control" placeholder="{{lang.notice}}..." rows="3" name="todo-notice"
-                            id="todo-notice" [ngModel]="addTodoForm.notice"></textarea>
+                            id="todo-notice" [(ngModel)]="addTodoForm.notice"></textarea>
                         <small id="notice-help" class="form-text text-muted">{{lang.noticehelp}}.</small>
                     </div>
 
                     <div class="form-group">
                         <label for="todo-priority">{{lang.priority}}:</label>
                         <select class="form-control" name="todo-priority" id="todo-priority"
-                            [ngModel]="addTodoForm.priority">
+                            [(ngModel)]="addTodoForm.priority">
                             <option value="0">{{lang.priorityselect}}...</option>
                                 <option>2</option>
                                 <option>1</option>
