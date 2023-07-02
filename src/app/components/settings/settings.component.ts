@@ -1,12 +1,12 @@
 
 import { Component, Inject } from "@angular/core";
-import { Lang } from "../services/lang";
-import { StorageProvider } from "../services/storage";
 import { Router } from "@angular/router";
-import { SettingsInterface, StorageInterface } from "../Interfaces/storage.interfaces";
 import { HttpClient } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Subscription, take } from "rxjs";
+import { StorageInterface, SettingsInterface } from "src/app/Interfaces/storage.interfaces";
+import { Lang } from "src/app/services/lang";
+import { StorageProvider } from "src/app/services/storage";
 
 
 export interface Language {
@@ -19,21 +19,19 @@ export interface Language {
     templateUrl: './settings.component.html',
 })
 export class SettingsComponent {
-    public externalHtml;
+    // public externalHtml!: any;
     public showReload = false;
     public languages: Language[];
     public $lang = this.lang.$lang;
     public storage: StorageInterface;
     public settings: SettingsInterface;
 
-    private $externalHtmlSubscription: Subscription;
+    // private $externalHtmlSubscription!: Subscription;
 
     constructor(
         @Inject(Lang) private lang: Lang,
         @Inject(StorageProvider) private storageProvider: StorageProvider,
         @Inject(Router) private router: Router,
-        @Inject(HttpClient) private http: HttpClient,
-        private sanitizer: DomSanitizer
     ) {
         this.storage = this.storageProvider.storage;
         this.settings = this.storageProvider.storage.settings;
@@ -42,20 +40,10 @@ export class SettingsComponent {
             { short: 'de', full: 'Deutsch' }
         ];
 
-        this.$externalHtmlSubscription = this.http.get('assets/timezones.html', { responseType: 'text' })
-            .pipe(take(1))
-            .subscribe(
-                data => {
-                    return this.externalHtml = this.sanitizer.bypassSecurityTrustHtml(data)
-                }
-            );
+        
     }
 
-    ngOnDestroy() {
-
-    }
-
-    identify(index, item) {
+    identify(index: any, item: any) {
         return item.id
     }
 

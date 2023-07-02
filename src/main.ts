@@ -12,13 +12,13 @@ import { AppRoutingModule } from './app/app.routes';
 
 import { StorageProvider } from './app/services/storage';
 import { Lang } from './app/services/lang';
-import { BaseComponent } from './app/components/base.component';
-import { TodoListComponent } from './app/components/todolist/todolist.component';
-import { SettingsComponent } from './app/components/settings.component';
 import { DoneFilterPipe } from './app/filter/done-filter.pipe';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DxCheckBoxModule, DxFormModule, DxSelectBoxModule, DxTabPanelModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { BaseComponent } from './app/components/base/base.component';
+import { SettingsComponent } from './app/components/settings/settings.component';
+import { TodoListComponent } from './app/components/todolist/todolist.component';
 
 @NgModule({
     imports: [

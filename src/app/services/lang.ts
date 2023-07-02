@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class Lang {
-  public $lang: Observable<any>;
+  public $lang!: Observable<any>;
   constructor(@Inject(HttpClient) private http: HttpClient) { }
   load = (lang: string) => {
     if (lang == null) lang = 'en';

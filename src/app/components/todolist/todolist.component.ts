@@ -18,7 +18,7 @@ export class TodoListComponent {
     public lists: ListInterface[] = [];
     public settings: SettingsInterface;
     public $lang = this.Lang.$lang;
-    public title: string;
+    public title!: string;
     public todoFormPriority: any[];
     private storage;
 
@@ -41,16 +41,16 @@ export class TodoListComponent {
         this.setShowToTab(Number(this.route.snapshot.paramMap.get('id')));
     }
 
-    onTitleClick(event): void {
+    onTitleClick(event: any): void {
         this.title = event.itemData.title;
         this.setShowToTab(event.itemData.id)
     }
 
-    trackBy(index, item) {
+    trackBy(index: any, item: { id: any; }) {
         return item.id
     }
 
-    identify(index, item) {
+    identify(index: any, item: { id: any; }) {
         return item.id
     }
 

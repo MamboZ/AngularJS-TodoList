@@ -1,7 +1,7 @@
 import { Component, Inject } from "@angular/core";
-import { StorageProvider } from "../services/storage";
-import { Lang } from "../services/lang";
-import { SettingsInterface } from "../Interfaces/storage.interfaces";
+import { StorageProvider } from "../../services/storage";
+import { Lang } from "../../services/lang";
+import { SettingsInterface } from "../../Interfaces/storage.interfaces";
 
 @Component({
     selector: 'base-comp',

@@ -5,9 +5,11 @@
     "description": "Simple AngularJS",
     "main": "index.js",
     "scripts": {
+        "ng": "ng",
         "start": "ng serve",
         "setup": "bower install",
-        "build": "ng build"
+        "build": "ng build",
+        "test": "ng test"
     },
     "dependencies": {
         "@angular/animations": "^16.1.2",
@@ -42,8 +44,16 @@
         "@angular/cli": "^16.1.2",
         "@angular/compiler-cli": "^16.1.2",
         "@angular/localize": "^16.1.2",
+        "@types/jasmine": "~4.3.0",
+        "@types/jest": "^29.5.2",
         "devextreme-cli": "^1.6.0",
+        "jasmine-core": "~4.5.0",
         "json-server": "^0.17.3",
+        "karma": "~6.4.0",
+        "karma-chrome-launcher": "~3.1.0",
+        "karma-coverage": "~2.2.0",
+        "karma-jasmine": "~5.1.0",
+        "karma-jasmine-html-reporter": "~2.0.0",
         "rimraf": "^5.0.1",
         "serve": "^14.2.0",
         "ts-loader": "^9.4.4",
